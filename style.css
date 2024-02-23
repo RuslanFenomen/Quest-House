@@ -1,0 +1,281 @@
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+/* @font-face {
+    font-family: 'NotoSans';
+    src: local('NotoSans-ExtraBold'),
+        url('fonts/NotoSans-ExtraBold.woff') format('woff'),
+        url('fonts/NotoSans-ExtraBold.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 900;
+} */
+
+:root {
+    --default: #aa0000;
+    --hover: #ff0000;
+    --active: #660000;
+    --white: #fff;
+    --black: #000;
+    --grey: #292929;
+    --red: #660000dd;
+
+}
+
+body {
+    background-color: var(--grey);
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.btn-resize {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/* header */
+.header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: #0008;
+    border-bottom: 2px solid var(--default);
+}
+
+.sticky {
+    position: fixed;
+    animation: down .7s;
+}
+
+@keyframes down {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.logo {
+    z-index: 11;
+}
+
+.menu__list {
+    display: none;
+}
+
+.menu__btn {
+    width: 30px;
+    height: 24px;
+    position: relative;
+    z-index: 11;
+}
+
+.menu__btn-span {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--default);
+    transition: transform .5s, background-color .2s;
+}
+
+.menu__btn::before,
+.menu__btn::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--default);
+    transition: transform .5s, background-color .2s;
+}
+
+.menu__btn::before {
+    top: 0;
+}
+
+.menu__btn::after {
+    bottom: 0;
+}
+
+.menu--active .menu__btn::before {
+    transform: rotate(-45deg) translate(-7px, 7px);
+    background-color: #fff;
+}
+
+.menu--active .menu__btn::after {
+    transform: rotate(-45deg) translate(7px, -7px);
+    background-color: #fff;
+}
+
+.menu--active .menu__btn span {
+    transform: rotate(45deg);
+    background-color: #fff;
+}
+
+.menu__list {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background-color: var(--red);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform .3s, opacity .4s;
+}
+
+.menu--active .menu__list {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.menu__link {
+    color: #fff;
+    font-size: 20px;
+    padding: 5px;
+    display: block;
+    font-weight: 700;
+}
+
+.menu__item-dropdown::after {
+    border-color: var(--white);
+}
+
+/* main */
+.main {
+    margin-top: 115px;
+}
+
+/* intro */
+.intro {
+    background-color: #fff;
+    position: relative;
+    background-image: url('img/intro-bg.jpg');
+    background-position: center 40%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.intro::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0008;
+    z-index: 1;
+}
+
+.intro__inner {
+    padding: 100px 0;
+    position: relative;
+    z-index: 2;
+    height: calc(100vh - 170px);
+}
+
+.intro__seo-title {
+    margin-bottom: 36px;
+    color: var(--white);
+}
+
+.intro__title {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: var(--white);
+}
+
+.intro__subtitle {
+    font-size: 20px;
+    margin-bottom: 36px;
+    color: var(--white);
+}
+
+.intro__descr {
+    margin-bottom: 36px;
+    width: 80%;
+    color: var(--white);
+}
+
+.intro__btn {
+    font-size: 32px;
+    padding: 30px;
+    color: var(--white);
+    position: relative;
+}
+
+.intro__btn-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2);
+    z-index: -1;
+    width: 180px;
+}
+
+.intro__btn-svg path {
+    fill: var(--default);
+}
+
+.intro__messages {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+}
+
+.intro__messages path {
+    fill: var(--white);
+}
